@@ -1,10 +1,10 @@
-# Huchi
+# Fafnir
 
-## What is Huchi?
+## What is Fafnir?
 
-**Huchi** is an open-source tool that allows for the complete automation of launching different security tools against an application's code to identify potential vulnerabilities. 
+**Fafnir** is an open-source tool that allows for the complete automation of launching different security tools against an application's code to identify potential vulnerabilities. 
 
-Huchi is the goddess of fire in Japanese mythology and is associated with home protection and fire safety.
+> Fafnir was a dwarf-like creature in Norse mythology, who transformed himself into a terrifying dragon to protect his treasure. [More about his history](https://vikingr.org/other-beings/fafnir)
 
 ## Security tools integrated
 
