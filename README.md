@@ -9,6 +9,7 @@ Huchi is the goddess of fire in Japanese mythology and is associated with home p
 ## Security tools integrated
 
 |Tool|Tipology|Status|
+|----|--------|------|
 |Semgrep|SAST|TO DO|
 |Gitleaks|Secrets Scanning|TO DO|
 |Dependency-check|SCA|TO DO|
