@@ -1,0 +1,5 @@
+exclude-tools:
+  #- semgrep
+  #- dependency-check
+  #- trivy
+  - gitleaks  

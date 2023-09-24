@@ -19,3 +19,15 @@
 ## Architecture
 
 TO DO
+
+## FAQ
+
+### docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+
+```bash
+sudo chmod 666 /var/run/docker.sock
+```
+
+### Run slow
+
+First execution pull all images
