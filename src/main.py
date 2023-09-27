@@ -13,7 +13,8 @@ VERSION = '1.0.0'
 @click.argument('scan_fullpath')
 @click.option("--verbose", is_flag=True, show_default=True, default=False, help="Verbose mode")
 @click.option("--configuration", help="Fafnir configuration file")
-def main(scan_fullpath, verbose, configuration):
+@click.option("--asynchronous", is_flag=True, show_default=True, default=False, help="Asynchronous mode (run multiple containers at same time)")
+def main(scan_fullpath, verbose, configuration, asynchronous):
 
     print_banner(VERSION)
 
@@ -26,7 +27,7 @@ def main(scan_fullpath, verbose, configuration):
     else:
         fafnir_config = None
 
-    run_tools(client, config, scan_fullpath, verbose, fafnir_config)
+    run_tools(client, config, scan_fullpath, verbose, fafnir_config, asynchronous)
 
 # Main program
 if __name__ == '__main__':

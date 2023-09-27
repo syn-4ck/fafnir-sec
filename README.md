@@ -10,10 +10,10 @@
 
 |Tool|Tipology|Status|
 |----|--------|------|
-|Semgrep|SAST|TO DO|
-|Gitleaks|Secrets Scanning|TO DO|
-|Dependency-check|SCA|TO DO|
-|Trivy|Container Security Scan|TO DO|
+|Semgrep|SAST|Integrated|
+|Gitleaks|Secrets Scanning|Integrated|
+|Dependency-check|SCA|Integrated|
+|Trivy|Container Security Scan|Integrated|
 |Nuclei|DAST|TO DO|
 
 ## Architecture
