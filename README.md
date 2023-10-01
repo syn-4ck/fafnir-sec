@@ -1,5 +1,9 @@
 # Fafnir
 
+<p align="center">
+    <img src="./assets/logo/fafnir-logo.png" alt="Logo Fafnir" width="250"/>
+</p>
+
 ## What is Fafnir?
 
 **Fafnir** is an open-source tool that allows for the complete automation of launching different security tools against an application's code to identify potential vulnerabilities. 
