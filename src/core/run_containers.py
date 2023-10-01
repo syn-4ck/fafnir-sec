@@ -10,6 +10,8 @@ def run_tools(client, config, scan_fullpath, verbose, configuration, async_optio
     for category in config.get("containers").get("security-tools"):
         for tool in config.get("containers").get("security-tools").get(category):
             if configuration is None or tool not in configuration.get("exclude-tools"):
+                if not os.path.exists(os.path.normpath(scan_fullpath + "/security-tools/" + tool)):
+                    os.mkdir(os.path.normpath(scan_fullpath + "/security-tools/" + tool))
                 tool_config = config.get("containers").get("security-tools").get(category).get(tool)
                 tool_image = "{img}:{version}".format(img=tool_config.get("image"),version=tool_config.get("version"))
                 tool_command = tool_config.get("command")

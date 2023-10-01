@@ -6,15 +6,30 @@
 
 > Fafnir was a dwarf-like creature in Norse mythology, who transformed himself into a terrifying dragon to protect his treasure. [More about his history](https://vikingr.org/other-beings/fafnir)
 
-## Security tools integrated
+## Security tools
+
+### Integrated
 
 |Tool|Tipology|Status|
 |----|--------|------|
 |Semgrep|SAST|Integrated|
+|Bandit|SAST|Integrated|
 |Gitleaks|Secrets Scanning|Integrated|
-|Dependency-check|SCA|Integrated|
+|osv-scanner|SCA|Integrated|
+|Trivy|SCA|Integrated|
 |Trivy|Container Security Scan|Integrated|
+|Checkov|IaC Scan|Integrated|
+
+### In roadmap
+
+|Tool|Tipology|Status|
+|----|--------|------|
 |Nuclei|DAST|TO DO|
+|Brakeman|SAST|TO DO|
+|Lunasec|SAST|TO DO|
+|Insider|SAST|TO DO|
+|Syft|SBOM generator|TO DO|
+
 
 ## Architecture
 

@@ -4,10 +4,15 @@ import click
 
 from core.run_containers import run_tools
 from config.banner.banner import print_banner
+from core.technology_detection.detect_technologies import detect_technologies
+
+from report.report import generate_report
 
 VERSION = '1.0.0'
 
 #volume = "/home/julian/workspace/fafnir/src"
+
+password = "ajklawejrkl42348swfgkg"
 
 @click.command()
 @click.argument('scan_fullpath')
@@ -27,7 +32,11 @@ def main(scan_fullpath, verbose, configuration, asynchronous):
     else:
         fafnir_config = None
 
+    print(detect_technologies(scan_fullpath))
+
     run_tools(client, config, scan_fullpath, verbose, fafnir_config, asynchronous)
+
+    generate_report(scan_fullpath)
 
 # Main program
 if __name__ == '__main__':

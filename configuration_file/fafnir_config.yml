@@ -1,5 +1,12 @@
 exclude-tools:
-  #- semgrep
-  #- dependency-check
-  - trivy
-  - gitleaks  
+  - semgrep
+  - bandit
+  - osv-scanner
+  - trivy-sca
+  - trivy-container
+  - gitleaks
+  - checkov
+
+#ignore-paths:
+#  - .git
+#  - README.md

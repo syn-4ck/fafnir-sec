@@ -4,19 +4,32 @@ containers:
       semgrep: 
         image: "returntocorp/semgrep"
         version: "1.41.0"
-        command: "semgrep scan --config=auto --output /src/security-tools/semgrep_results.json --json"
+        command: "semgrep scan --config=auto --output /src/security-tools/semgrep/semgrep_results.json --json"
+      bandit:
+        image: "opensorcery/bandit"
+        version: "latest"
+        command: "-r /src -f json -o /src/security-tools/bandit/bandit_results.json"
     sca:
-      dependency-check:
-        image: "owasp/dependency-check"
-        version: "8.4.0"
-        command: "--scan /src --format XML --project dependency-check-scan --out /src/security-tools --enableExperimental"
-    containers:
-      trivy:
+      osv-scanner:
+        image: "ghcr.io/google/osv-scanner"
+        version: "v1.4.0"
+        command: "--format json --output /src/security-tools/osv-scanner/osv-scanner_results.json --recursive /src"
+      trivy-sca:
         image: "aquasec/trivy"
         version: "0.45.1"
-        command: "fs --scanners vuln,config /src -f json -o /src/security-tools/trivy_results.json"
+        command: "fs --scanners vuln,config /src -f json -o /src/security-tools/trivy-sca/trivy-sca_results.json"
+    containers:
+      trivy-container:
+        image: "aquasec/trivy"
+        version: "0.45.1"
+        command: "image python:3.4-alpine -f json -o /src/security-tools/trivy-container/trivy-container_results.json"
     secrets-scanning:
       gitleaks:
         image: "zricethezav/gitleaks"
         version: "v8.18.0"
-        command: "detect --source /src -f json -r /src/security-tools/gitleaks_results.json"
+        command: "detect --source /src -f json -r /src/security-tools/gitleaks/gitleaks_results.json --no-git"
+    iac-analysis:
+      checkov:
+        image: "bridgecrew/checkov"
+        version: "2.4.51"
+        command: "--directory /src --output json --output-file-path /src/security-tools/checkov"
