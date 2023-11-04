@@ -5,8 +5,9 @@ def group_sast_vulnerabilities(vulnerabilities):
     for vuln in vulnerabilities:
         if grouped_vulnerabilities != []:
             for grouped_vuln in grouped_vulnerabilities:
-                if (grouped_vuln.file == vuln.file) and (grouped_vuln.line == vuln.line):
-                    break
+                if (grouped_vuln.file == vuln.file) and (grouped_vuln.location == vuln.location):
+                    if vuln.tools[0] not in grouped_vuln.tools:
+                        grouped_vuln.tools.append(vuln.tools)
             grouped_vulnerabilities.append(vuln)
         else:
             grouped_vulnerabilities.append(vuln)
@@ -18,8 +19,9 @@ def group_sca_vulnerabilities(vulnerabilities):
     for vuln in vulnerabilities:
         if grouped_vulnerabilities != []:
             for grouped_vuln in grouped_vulnerabilities:
-                if (grouped_vuln.identifier == vuln.identifier) and (grouped_vuln.file == vuln.file) and (grouped_vuln.line == vuln.line):
-                    break
+                if (grouped_vuln.identifier == vuln.identifier) and (grouped_vuln.file == vuln.file) and (grouped_vuln.location == vuln.location):
+                    if vuln.tools[0] not in grouped_vuln.tools:
+                        grouped_vuln.tools.append(vuln.tools)
             grouped_vulnerabilities.append(vuln)
         else:
             grouped_vulnerabilities.append(vuln)
@@ -31,8 +33,9 @@ def group_container_vulnerabilities(vulnerabilities):
     for vuln in vulnerabilities:
         if grouped_vulnerabilities != []:
             for grouped_vuln in grouped_vulnerabilities:
-                if (grouped_vuln.identifier == vuln.identifier) and (grouped_vuln.file == vuln.file) and (grouped_vuln.line == vuln.line):
-                    break
+                if (grouped_vuln.identifier == vuln.identifier) and (grouped_vuln.file == vuln.file) and (grouped_vuln.location == vuln.location):
+                    if vuln.tools[0] not in grouped_vuln.tools:
+                        grouped_vuln.tools.append(vuln.tools)
             grouped_vulnerabilities.append(vuln)
         else:
             grouped_vulnerabilities.append(vuln)
@@ -44,8 +47,9 @@ def group_iac_vulnerabilities(vulnerabilities):
     for vuln in vulnerabilities:
         if grouped_vulnerabilities != []:
             for grouped_vuln in grouped_vulnerabilities:
-                if (grouped_vuln.identifier == vuln.identifier) and (grouped_vuln.file == vuln.file) and (grouped_vuln.line == vuln.line):
-                    break
+                if (grouped_vuln.identifier == vuln.identifier) and (grouped_vuln.file == vuln.file) and (grouped_vuln.location == vuln.location):
+                    if vuln.tools[0] not in grouped_vuln.tools:
+                        grouped_vuln.tools.append(vuln.tools)
             grouped_vulnerabilities.append(vuln)
         else:
             grouped_vulnerabilities.append(vuln)
@@ -58,8 +62,9 @@ def group_secrets_vulnerabilities(vulnerabilities):
     for vuln in vulnerabilities:
         if grouped_vulnerabilities != []:
             for grouped_vuln in grouped_vulnerabilities:
-                if (grouped_vuln.file == vuln.file) and (grouped_vuln.line == vuln.line):
-                    break
+                if (grouped_vuln.file == vuln.file) and (grouped_vuln.location == vuln.location):
+                    if vuln.tools[0] not in grouped_vuln.tools:
+                        grouped_vuln.tools.append(vuln.tools)
             grouped_vulnerabilities.append(vuln)
         else:
             grouped_vulnerabilities.append(vuln)

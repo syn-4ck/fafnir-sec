@@ -1,12 +1,18 @@
-exclude-tools:
-  - semgrep
-  - bandit
-  - osv-scanner
-  - trivy-sca
-  - trivy-container
-  - gitleaks
-  - checkov
+exclude-tools: # Uncomment the tools you want to exclude from analysis
+  #- semgrep
+  #- bandit
+  #- find-sec-bugs
+  #- osv-scanner
+  #- trivy-sca
+  #- gitleaks
+  #- checkov
+  #- syft
 
-#ignore-paths:
-#  - .git
-#  - README.md
+tools-config:
+  semgrep:
+    api-key:  # Semgrep API key
+  checkov:
+    api-key:  #"Add an api key '--bc-api-key <api-key>' to see more detailed insights via https://bridgecrew.cloud"
+
+containers:
+  image: ""
