@@ -4,32 +4,70 @@ containers:
       semgrep: 
         image: "returntocorp/semgrep"
         version: "1.41.0"
-        command: "semgrep scan --config=auto --output /src/security-tools/semgrep/semgrep_results.json --json"
+        command: "semgrep scan --config=auto --output /report/security-tools/semgrep/semgrep_results.json --json /src"
       bandit:
         image: "opensorcery/bandit"
         version: "latest"
-        command: "-r /src -f json -o /src/security-tools/bandit/bandit_results.json"
+        command: "-r /src -f json -o /report/security-tools/bandit/bandit_results.json"
+      find-sec-bugs:
+        image: "ghsyn4ck/fafnir-findsecbugs"
+        version: "1.0.1"
+        command: "-sarif -output /report/security-tools/find-sec-bugs/findsecbugs_results.sarif /src"
     sca:
       osv-scanner:
         image: "ghcr.io/google/osv-scanner"
         version: "v1.4.0"
-        command: "--format json --output /src/security-tools/osv-scanner/osv-scanner_results.json --recursive /src"
+        command: "--format json --output /report/security-tools/osv-scanner/osv-scanner_results.json --recursive /src"
       trivy-sca:
         image: "aquasec/trivy"
         version: "0.45.1"
-        command: "fs --scanners vuln,config /src -f json -o /src/security-tools/trivy-sca/trivy-sca_results.json"
-    containers:
-      trivy-container:
-        image: "aquasec/trivy"
-        version: "0.45.1"
-        command: "image python:3.4-alpine -f json -o /src/security-tools/trivy-container/trivy-container_results.json"
+        command: "fs --scanners vuln -f json -o /report/security-tools/trivy-sca/trivy-sca_results.json /src"
     secrets-scanning:
       gitleaks:
         image: "zricethezav/gitleaks"
         version: "v8.18.0"
-        command: "detect --source /src -f json -r /src/security-tools/gitleaks/gitleaks_results.json --no-git"
+        command: "detect --source /src -f json -r /report/security-tools/gitleaks/gitleaks_results.json --no-git"
     iac-analysis:
       checkov:
         image: "bridgecrew/checkov"
         version: "2.4.51"
-        command: "--directory /src --output json --output-file-path /src/security-tools/checkov"
+        command: "--directory /src --output json --output-file-path /report/security-tools/checkov"
+    sbom:
+      syft:
+        image: "anchore/syft"
+        version: "v0.92.0"
+        command: "-o json=/report/security-tools/syft/syft_results.json /src"
+  container-security:
+    trivy-container:
+      image: "aquasec/trivy"
+      version: "0.45.1"
+      command: "image {} -f json -o /report/security-tools/trivy-container/trivy-container_results.json"
+
+technologies:
+  python:
+    extensions: ['.py','.pyc']
+    tools: ['trivy-sca','osv-scanner','syft','semgrep','bandit','gitleaks']
+  java:
+    extensions: ['.java','.jar','.war','.ear']
+    tools: ['trivy-sca','osv-scanner','syft','semgrep','find-sec-bugs','gitleaks']
+  terraform:
+    extensions: ['.tf']
+    tools: ['checkov','semgrep']
+  javascript:
+    extensions: ['.js']
+    tools: ['trivy-sca','osv-scanner','syft','semgrep','gitleaks']
+  typescript:
+    extensions: ['.js']
+    tools: ['trivy-sca','osv-scanner','syft','semgrep','gitleaks']
+  go:
+    extensions: ['.go']
+    tools: ['trivy-sca','osv-scanner','syft','semgrep','gitleaks']
+  c:
+    extensions: ['.c','.cpp','.cs']
+    tools: ['trivy-sca','osv-scanner','syft','semgrep','gitleaks']
+  kotlin:
+    extensions: ['.kt']
+    tools: ['trivy-sca','osv-scanner','syft','semgrep','gitleaks']
+  php:
+    extensions: ['.php']
+    tools: ['trivy-sca','osv-scanner','syft','semgrep','gitleaks']

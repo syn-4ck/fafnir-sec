@@ -163,3 +163,5 @@ security-tools/
 
 Pipfile
 Pipfile.lock
+
+test/data/files/

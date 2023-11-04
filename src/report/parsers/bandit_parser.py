@@ -8,5 +8,5 @@ def parse_bandit_vulns(report: dict):
     for result in report.get('results'):
         vulnerabilities.append(Vulnerability(result.get('issue_text'), result.get('issue_text') + ": " + result.get('filename'),"",result.get('issue_severity'), "N/A", "N/A",
                                       CATEGORY, result.get('test_id'), result.get('filename'),
-                                      result.get('line_number'), "", result.get('more_info'),TOOL_NAME))
+                                      result.get('line_number'), "Not defined by the tool", result.get('more_info'),[TOOL_NAME]))
     return vulnerabilities
