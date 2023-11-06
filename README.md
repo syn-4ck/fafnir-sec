@@ -116,7 +116,9 @@ To know the supported languages and technologies, review the integrated tools.
 |Lunasec|SAST|TO DO|
 |GoSec|SAST|TO DO|
 |Insider|SAST|TO DO|
+|MobSF|SAST & DAST|TO DO|
 
+## Supported languages and technologies
 
 ## FAQ
 
