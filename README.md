@@ -75,6 +75,8 @@ To check the options available in the CLI, you can run the following command:
 
 * **--disable-apis**: Disable API requests to get external information
 
+* **--verbose**: Verbose mode
+
 ### Recommendations
 
 * Previous project build/compilation
@@ -83,7 +85,7 @@ To check the options available in the CLI, you can run the following command:
 
 ## Configuration
 
-TO DO
+The Fafnir configuration file, defined with the `--configuration` flag, may be defined with a YAML structure. You can see a full example of this file in [this repository](configuration_file/fafnir_config.yml). You can download it, fill it and then use it in your future scans.
 
 ## Security tools
 
@@ -119,6 +121,28 @@ To know the supported languages and technologies, review the integrated tools.
 |MobSF|SAST & DAST|TO DO|
 
 ## Supported languages and technologies
+
+|Language|Supported SAST|Supported extensions (SAST)|Supported SCA|Supported SCA files|
+|----|--------|------|---------|-----------|
+|Python|:white_check_mark:|.py / .pyc|:white_check_mark:|Pipfile.lock / poetry.lock / requirements.txt / .egg / .dist-info/META-DATA / envs/*/conda-meta/*.json|
+|Java|:white_check_mark:|.java / .jar / .war / .ear|:white_check_mark:||
+|JS & TS|:white_check_mark:|.js / .ts|:white_check_mark:||
+|Go|:white_check_mark:|.go|:white_check_mark:||
+|C / C++ / C#|:white_check_mark:|.c / .cpp / .cs|:white_check_mark:||
+|Kotlin|:white_check_mark:|.kt|:white_check_mark:||
+|PHP|:white_check_mark:|.php|:white_check_mark:||
+|Ruby on rails|:x:||:x:||
+|Lua|:x:||:x:||
+|Batch file|:x:||:x:||
+|Powershell script|:x:||:x:||
+
+|Technologies|Supported|Supported extensions|
+|--------|-------|------|
+|Secrets|:white_check_mark:|All files|
+|IaC|:white_check_mark:|.tf|
+|Containers|:white_check_mark:|Dockerfile / Local builded images|
+|SBOM generator|:white_check_mark:|Python / Java / JS / Go / C / C++ / C# / Kotlin / PHP|
+|DAST|:x:|URL|
 
 ## FAQ
 
