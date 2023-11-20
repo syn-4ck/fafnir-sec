@@ -1,4 +1,4 @@
-exclude-tools: # Uncomment the tools you want to exclude from analysis
+#exclude-tools: # Uncomment the tools you want to exclude from analysis
   #- semgrep
   #- bandit
   #- find-sec-bugs

@@ -1,22 +1,55 @@
 from report.data_schema.vulnerability import Vulnerability
+from typing import Dict, List
 
 TOOL_NAME = "Checkov"
 
 def _get_category(category):
-     if category == "terraform":
-          return "IaC code analysis"
-     elif category == "dockerfile":
-          return "Container analysis"
-     elif category == "secrets":
-          return "Secrets detection"
-     else:
-          return ""
+    """
+    Retrieves the category description based on the given category.
 
-def parse_checkov_vulns(report: dict):
-    vulnerabilities = []
-    for check_type in report:
-        for vuln in check_type.get('results').get('failed_checks'):
-                vulnerabilities.append(Vulnerability(vuln.get('check_name'), vuln.get('check_id') + ": " + vuln.get('check_name'),vuln.get('check_id'),vuln.get('severity'),'N/A', "N/A",
-                                        _get_category(check_type.get('check_type')), vuln.get('check_id'), vuln.get('file_path'),
-                                        vuln.get('resource'),vuln.get('check_name'),vuln.get('guideline'),[TOOL_NAME]))
+    Parameters:
+        category (str): The category for which the description is to be retrieved.
+
+    Returns:
+        str: The description of the category. If the category is not found, an empty string is returned.
+    """
+    categories = {
+        "terraform": "IaC code analysis",
+        "dockerfile": "Container analysis",
+        "secrets": "Secrets detection",
+    }
+    return categories.get(category, "")
+
+def parse_checkov_vulns(report: Dict[str, Dict[str, Dict[str, List[Dict[str, str]]]]]) -> List[Vulnerability]:
+    """
+    Parses the Checkov vulnerabilities report and returns a list of Vulnerability objects.
+
+    Parameters:
+        report (Dict[str, Dict[str, Dict[str, List[Dict[str, str]]]]]): The Checkov vulnerabilities report as a dictionary.
+
+    Returns:
+        List[Vulnerability]: A list of Vulnerability objects representing the parsed vulnerabilities.
+    """
+    vulnerabilities: List[Vulnerability] = []
+    for check_type, check_type_results in report.items():
+        if 'results' in check_type_results and 'failed_checks' in check_type_results['results']:
+            for vuln in check_type_results['results']['failed_checks']:
+                try:
+                    vulnerability = Vulnerability()
+                    vulnerability.set_name(vuln['check_name'])
+                    vulnerability.set_description(f"{vuln['check_id']}: {vuln['check_name']}")
+                    vulnerability.set_identifier(vuln['check_id'])
+                    vulnerability.set_severity(vuln['severity'])
+                    vulnerability.set_cvss(None)
+                    vulnerability.set_epss(None)
+                    vulnerability.set_category(_get_category(check_type))
+                    vulnerability.set_rule(vuln['check_id'])
+                    vulnerability.set_file(vuln['file_path'])
+                    vulnerability.set_location(vuln['resource'])
+                    vulnerability.set_fix(vuln['check_name'])
+                    vulnerability.set_link(vuln['guideline'])
+                    vulnerability.set_tools([TOOL_NAME])
+                    vulnerabilities.append(vulnerability)
+                except KeyError:
+                    continue
     return vulnerabilities

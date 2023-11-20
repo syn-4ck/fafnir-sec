@@ -1,39 +1,86 @@
+from typing import List, Dict
+
 from report.data_schema.vulnerability import Vulnerability
 
 CATEGORY = "Software Compose Analysis (SCA)"
 TOOL_NAME = "OSV Scanner"
 
 def _get_real_severity(severity):
-    if severity == "MODERATE" or severity == "HIGH":
-        return "High"
-    else:
-        return severity
+    """
+    Return the real severity based on the input severity.
+    
+    Parameters:
+        severity (str): The input severity value.
+        
+    Returns:
+        str: The real severity value.
+    """
+    return "High" if severity in ("MODERATE", "HIGH") else severity
 
 def _get_fix_version(affected_versions):
+    """
+    Returns a list of fix versions based on the provided affected versions.
+
+    Parameters:
+        affected_versions (list): A list of affected versions.
+
+    Returns:
+        list: A list of fix versions.
+    """
     fix_version = []
     for version in affected_versions:
-        for range in version.get('ranges'):
-            for event in range.get('events'):
-                if event.get('fixed') and event.get('fixed') not in fix_version:
-                    fix_version.append(event.get('fixed'))
+        for range in version['ranges']:
+            for event in range['events']:
+                fixed = event.get('fixed')
+                if fixed and fixed not in fix_version:
+                    fix_version.append(fixed)
     return fix_version
 
-def parse_osv_scanner_vulns(report: dict):
+def parse_osv_scanner_vulns(report: Dict[str, List[Dict[str, List[Dict[str, str]]]]]) -> List[Vulnerability]:
+    """
+    Parse the vulnerabilities from the OSV scanner report.
+
+    Args:
+        report (dict): The OSV scanner report.
+
+    Returns:
+        list: A list of Vulnerability objects.
+    """
     vulnerabilities = []
-    if report.get('results'):
-        for result in report.get('results'):
-            for package in result.get('packages'):
-                for vuln in package.get('vulnerabilities'):
-                    vuln_id = vuln.get('id')
-                    if vuln.get('aliases'):
-                        for v in vuln.get('aliases'):
-                            if v.startswith('CVE-'):
-                                vuln_id = v
-                    fix_version = _get_fix_version(vuln.get('affected'))
-                    vuln_severity = _get_real_severity(vuln.get('database_specific').get('severity'))
-                    name = vuln_id + " (" + package.get('package').get('name') + "): " + vuln.get('summary')
-                    vulnerabilities.append(Vulnerability(name, vuln.get('details'),vuln_id, vuln_severity, vuln.get('severity')[0].get('score'), "N/A",
-                                        CATEGORY, "N/A", result.get('source').get('path'), 
-                                        package.get('package').get('name') + "@" + package.get('package').get('version'),
-                                        fix_version,vuln.get('references')[0].get('url'),[TOOL_NAME]))
+    results = report.get('results',[])
+    if results:
+        vulns = [vuln
+                 for result in results
+                 for package in result.get('packages')
+                 for vuln in package.get('vulnerabilities')]
+        
+        for vuln in vulns:
+            vuln_id = next((alias for alias in vuln.get('aliases') if alias.startswith('CVE-')), vuln.get('id'))
+            affected = vuln.get('affected')
+            fix_version = _get_fix_version(affected)
+            db_specific = vuln.get('database_specific')
+            vuln_severity = _get_real_severity(db_specific.get('severity'))
+            package_name = vuln.get('package', {}).get('name')
+            summary = vuln.get('summary')
+            details = vuln.get('details')
+            references = vuln.get('references')
+            severity = vuln['severity'][0]['score']
+            
+            vulnerability = Vulnerability()
+            vulnerability.set_name(f"{vuln_id} ({package_name}): {summary}")
+            vulnerability.set_description(details)
+            vulnerability.set_identifier(vuln_id)
+            vulnerability.set_severity(vuln_severity)
+            vulnerability.set_cvss(severity)
+            vulnerability.set_epss(None)
+            vulnerability.set_category(CATEGORY)
+            vulnerability.set_rule("N/A")
+            vulnerability.set_file(vuln.get('source', {}).get('path'))
+            vulnerability.set_location("N/A")
+            vulnerability.set_fix(fix_version)
+            vulnerability.set_link(references[0]['url'])
+            vulnerability.set_tools([TOOL_NAME])
+            
+            vulnerabilities.append(vulnerability)
+    
     return vulnerabilities

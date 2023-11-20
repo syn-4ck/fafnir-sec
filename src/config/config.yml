@@ -57,7 +57,7 @@ technologies:
     extensions: ['.js']
     tools: ['trivy-sca','osv-scanner','syft','semgrep','gitleaks']
   typescript:
-    extensions: ['.js']
+    extensions: ['.ts']
     tools: ['trivy-sca','osv-scanner','syft','semgrep','gitleaks']
   go:
     extensions: ['.go']
