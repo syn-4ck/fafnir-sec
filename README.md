@@ -126,6 +126,7 @@ To know the supported languages and technologies, review the integrated tools.
 |kubescan|Kubernetes|TO DO|
 |grype|Container Analysis|TO DO|
 |clair|Container Analysis|TO DO|
+|chain-bench|Software Supply Chain Security|TO DO|
 |Trufflehog|Secrets Scanning|TO DO|
 
 ## Supported languages and technologies
