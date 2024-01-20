@@ -54,7 +54,7 @@ jobs:
         python-version: '3.8'
 
     - name: Install Bandit
-      run: pip install bandit bandit_sarif_formatter -y
+      run: pip install bandit bandit_sarif_formatter
 
     - name: Run Bandit
       run: bandit --format sarif --output bandit-results.sarif -r src/
