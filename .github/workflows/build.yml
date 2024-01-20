@@ -30,7 +30,7 @@ jobs:
         path: dist
     
     - name: Install tool
-      run: find dist/ -name '*.whl' -type f | xargs pip install -y
+      run: find dist/ -name '*.whl' -type f | xargs pip install
 
     - name: Run tool
       run: fafnir --help
