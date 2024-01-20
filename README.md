@@ -71,6 +71,8 @@ To check the options available in the CLI, you can run the following command:
 
 * **--asynchronous**: Asynchronous mode to run all security tools at the same time
 
+* **--output-type**: Type of report: sarif, json
+
 * **--output-path**: Path to store the reports
 
 * **--disable-apis**: Disable API requests to get external information
@@ -112,34 +114,43 @@ To know the supported languages and technologies, review the integrated tools.
 
 |Tool|Tipology|Status|
 |----|--------|------|
-|Nuclei|DAST|TO DO|
 |DevSkim|SAST|TO DO|
 |Brakeman|SAST|TO DO|
-|Lunasec|SAST|TO DO|
+|LunaSec|SAST|TO DO|
 |GoSec|SAST|TO DO|
 |Insider|SAST|TO DO|
+|bearer|SAST|TO DO|
+|Progpilot|SAST|TO DO|
 |MobSF|SAST & DAST|TO DO|
+|dustilock|Dependency Confusion|TO DO|
+|Nuclei|DAST|TO DO|
+|Kicks|IaC|TO DO|
+|kubescan|Kubernetes|TO DO|
+|grype|Container Analysis|TO DO|
+|clair|Container Analysis|TO DO|
+|chain-bench|Software Supply Chain Security|TO DO|
+|Trufflehog|Secrets Scanning|TO DO|
 
 ## Supported languages and technologies
 
-|Language|Supported SAST|Supported extensions (SAST)|Supported SCA|Supported SCA files|
-|----|--------|------|---------|-----------|
-|Python|:white_check_mark:|.py / .pyc|:white_check_mark:|Pipfile.lock / poetry.lock / requirements.txt / .egg / .dist-info/META-DATA / envs/*/conda-meta/*.json|
-|Java|:white_check_mark:|.java / .jar / .war / .ear|:white_check_mark:||
-|JS & TS|:white_check_mark:|.js / .ts|:white_check_mark:||
-|Go|:white_check_mark:|.go|:white_check_mark:||
-|C / C++ / C#|:white_check_mark:|.c / .cpp / .cs|:white_check_mark:||
-|Kotlin|:white_check_mark:|.kt|:white_check_mark:||
-|PHP|:white_check_mark:|.php|:white_check_mark:||
-|Ruby on rails|:x:||:x:||
-|Lua|:x:||:x:||
-|Batch file|:x:||:x:||
-|Powershell script|:x:||:x:||
+|Language|Supported SAST|Supported SCA|
+|----|--------|---------|
+|Python|:white_check_mark:|:white_check_mark:|
+|Java|:white_check_mark:|:white_check_mark:|
+|JS & TS|:white_check_mark:|:white_check_mark:|
+|Go|:white_check_mark:|:white_check_mark:|
+|C / C++ / C#|:white_check_mark:|:white_check_mark:|
+|Kotlin|:white_check_mark:|:white_check_mark:|
+|PHP|:white_check_mark:|:white_check_mark:|
+|Ruby on rails|:x:|:x:|
+|Lua|:x:|:x:|
+|Batch file|:x:|:x:|
+|Powershell script|:x:|:x:|
 
-|Technologies|Supported|Supported extensions|
+|Technologies|Supported|Supported Technologies|
 |--------|-------|------|
 |Secrets|:white_check_mark:|All files|
-|IaC|:white_check_mark:|.tf|
+|IaC|:white_check_mark:|HCL files|
 |Containers|:white_check_mark:|Dockerfile / Local builded images|
 |SBOM generator|:white_check_mark:|Python / Java / JS / Go / C / C++ / C# / Kotlin / PHP|
 |DAST|:x:|URL|

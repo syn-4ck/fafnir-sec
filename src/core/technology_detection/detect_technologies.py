@@ -2,6 +2,7 @@ import os
 
 from typing import List, Dict
 
+
 def _detect_technologies(code_path: str) -> List[str]:
     """
     Detects the programming technologies used in the given code path.
@@ -17,6 +18,7 @@ def _detect_technologies(code_path: str) -> List[str]:
                     for f in f_names
                     if _guess_programming_language_from_extension(os.path.join(root, f))))
 
+
 def _guess_programming_language_from_extension(filepath: str) -> str:
     """
     Guesses the programming language based on the file extension of the given file path.
@@ -29,6 +31,7 @@ def _guess_programming_language_from_extension(filepath: str) -> str:
     """
     _, file_extension = os.path.splitext(filepath)
     return file_extension
+
 
 def select_tools(scan_fullpath: str, config: Dict[str, dict], fafnir_configuration: Dict[str, list]) -> List[str]:
     """

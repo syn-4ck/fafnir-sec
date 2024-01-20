@@ -1,10 +1,12 @@
 from typing import List, Dict
+import logging
 
-from report.data_schema.vulnerability import Vulnerability
+from ..data_schema.vulnerability import Vulnerability
 
 CATEGORY = "Static Application Security Testing (SAST)"
 TOOL_NAME = "FindSecBugs"
 FIELDS_NOT_DEFINED = "Not defined by the tool"
+
 
 def _get_findsecbugs_severity(level):
     """
@@ -17,6 +19,7 @@ def _get_findsecbugs_severity(level):
         "warning": "HIGH",
         "error": "CRITICAL"
     }.get(level, level)
+
 
 def get_physical_location(item):
     """
@@ -35,6 +38,7 @@ def get_physical_location(item):
             return artifact_location.get('uri')
     return None
 
+
 def get_region_start_line(item):
     """
     Get the start line of the region from the given item.
@@ -52,6 +56,7 @@ def get_region_start_line(item):
             return region.get('startLine')
     return None
 
+
 def parse_findsecbugs_vulns(report: Dict[str, List[Dict[str, object]]]) -> List[Vulnerability]:
     """
     Parses the FindSecBugs vulnerabilities from the given report.
@@ -65,10 +70,12 @@ def parse_findsecbugs_vulns(report: Dict[str, List[Dict[str, object]]]) -> List[
 
     vulnerabilities: List[Vulnerability] = []
     for run in report.get('runs'):
-        for result in run.get('results',[]):
-            try: 
-                files = [get_physical_location(item) for item in result.get('locations') if get_physical_location(item) is not None]
-                locations = [get_region_start_line(item) for item in result.get('locations') if get_region_start_line(item) is not None]
+        for result in run.get('results', []):
+            try:
+                files = [get_physical_location(item) for item in result.get(
+                    'locations') if get_physical_location(item) is not None]
+                locations = [get_region_start_line(item) for item in result.get(
+                    'locations') if get_region_start_line(item) is not None]
                 message = result.get('message').get('text')
                 rule_id = result.get('ruleId')
                 severity = _get_findsecbugs_severity(result.get('level'))
@@ -92,5 +99,5 @@ def parse_findsecbugs_vulns(report: Dict[str, List[Dict[str, object]]]) -> List[
                 vulnerability.set_tools([TOOL_NAME])
                 vulnerabilities.append(vulnerability)
             except Exception as e:
-                print(f"Error parsing vulnerability: {e}")
+                logging.error(f"Error parsing vulnerability: {e}")
     return vulnerabilities

@@ -1,12 +1,12 @@
-#exclude-tools: # Uncomment the tools you want to exclude from analysis
-  #- semgrep
-  #- bandit
-  #- find-sec-bugs
-  #- osv-scanner
+exclude-tools: # Uncomment the tools you want to exclude from analysis
+  - semgrep
+  - bandit
+  - find-sec-bugs
+  - osv-scanner
   #- trivy-sca
-  #- gitleaks
-  #- checkov
-  #- syft
+  - gitleaks
+  - checkov
+  - syft
 
 tools-config:
   semgrep:
