@@ -45,7 +45,8 @@ def parse_checkov_vulns(report: Dict[str, Dict[str, Dict[str, List[Dict[str, str
                     vulnerability.set_severity(vuln['severity'])
                     vulnerability.set_cvss(None)
                     vulnerability.set_epss(None)
-                    vulnerability.set_category(_get_category(r.get("check_type")))
+                    vulnerability.set_category(
+                        _get_category(r.get("check_type")))
                     vulnerability.set_rule(vuln['check_id'])
                     vulnerability.set_file(vuln['file_path'])
                     vulnerability.set_location(vuln['resource'])

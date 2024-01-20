@@ -54,12 +54,12 @@ def parse_osv_scanner_vulns(report: Dict[str, List[Dict[str, List[Dict[str, str]
     if results:
         for result in results:
             vulns = [vuln
-                    for package in result.get('packages')
-                    for vuln in package.get('vulnerabilities')]
+                     for package in result.get('packages')
+                     for vuln in package.get('vulnerabilities')]
 
             for vuln in vulns:
                 vuln_id = next((alias for alias in vuln.get('aliases')
-                            if alias.startswith('CVE-')), vuln.get('id'))
+                                if alias.startswith('CVE-')), vuln.get('id'))
                 affected = vuln.get('affected')
                 fix_version = _get_fix_version(affected)
                 db_specific = vuln.get('database_specific')
@@ -71,7 +71,8 @@ def parse_osv_scanner_vulns(report: Dict[str, List[Dict[str, List[Dict[str, str]
                 severity = vuln['severity'][0]['score']
 
                 vulnerability = Vulnerability()
-                vulnerability.set_name(f"{vuln_id} ({package_name}): {summary}")
+                vulnerability.set_name(
+                    f"{vuln_id} ({package_name}): {summary}")
                 vulnerability.set_description(details)
                 vulnerability.set_identifier(vuln_id)
                 vulnerability.set_severity(vuln_severity)

@@ -23,7 +23,8 @@ def group_sast_vulnerabilities(vulnerabilities: List[Vulnerability]) -> List[Dic
                 and grouped_vuln.location == vuln.location
             ):
                 if vuln.tools[0] not in grouped_vuln.tools:
-                    grouped_vuln.set_tools(grouped_vuln.get_tools().append((vuln.tools[0])))
+                    grouped_vuln.set_tools(
+                        grouped_vuln.get_tools().append((vuln.tools[0])))
                 added = True
                 break
         if not added:
@@ -51,7 +52,8 @@ def group_sca_vulnerabilities(vulnerabilities: List[Vulnerability]) -> List[Dict
                 and grouped_vuln.location == vuln.location
             ):
                 if vuln.tools[0] not in grouped_vuln.tools:
-                    grouped_vuln.set_tools(grouped_vuln.get_tools().append((vuln.tools[0])))
+                    grouped_vuln.set_tools(
+                        grouped_vuln.get_tools().append((vuln.tools[0])))
                 added = True
                 break
         if not added:
@@ -79,7 +81,8 @@ def group_container_vulnerabilities(vulnerabilities: List[Vulnerability]) -> Lis
                 and grouped_vuln.location == vuln.location
             ):
                 if vuln.tools[0] not in grouped_vuln.tools:
-                    grouped_vuln.set_tools(grouped_vuln.get_tools().append((vuln.tools[0])))
+                    grouped_vuln.set_tools(
+                        grouped_vuln.get_tools().append((vuln.tools[0])))
                 added = True
                 break
         if not added:
@@ -107,7 +110,8 @@ def group_iac_vulnerabilities(vulnerabilities: List[Vulnerability]) -> List[Dict
                 and grouped_vuln.location == vuln.location
             ):
                 if vuln.tools[0] not in grouped_vuln.tools:
-                    grouped_vuln.set_tools(grouped_vuln.get_tools().append((vuln.tools[0])))
+                    grouped_vuln.set_tools(
+                        grouped_vuln.get_tools().append((vuln.tools[0])))
                 added = True
                 break
         if not added:
@@ -134,7 +138,8 @@ def group_secrets_vulnerabilities(vulnerabilities: List[Vulnerability]) -> List[
                 and grouped_vuln.location == vuln.location
             ):
                 if vuln.tools[0] not in grouped_vuln.tools:
-                    grouped_vuln.set_tools(grouped_vuln.get_tools().append((vuln.tools[0])))
+                    grouped_vuln.set_tools(
+                        grouped_vuln.get_tools().append((vuln.tools[0])))
                 added = True
                 break
         if not added:

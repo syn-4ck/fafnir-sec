@@ -21,16 +21,18 @@ VERSION = '1.0.0'
 @click.option("-a", "--asynchronous", is_flag=True, show_default=True, default=False, help="Asynchronous mode")
 @click.option("-t", "--output-type", type=click.Choice(['json', 'sarif']), default="json", help="Report type")
 @click.option("-o", "--output-path", default=os.path.join(os.path.abspath("."), "reports"), help="Path to store the tools/Fafnir report")
-@click.option("-x","--disable-apis", is_flag=True, show_default=True, default=True, help="Disable API requests")
+@click.option("-x", "--disable-apis", is_flag=True, show_default=True, default=True, help="Disable API requests")
 def main(scan_fullpath: str, verbose: bool, configuration: Optional[str],
          asynchronous: bool, output_type: str, output_path: str, disable_apis: bool) -> None:
 
     print_banner(VERSION)
 
     if verbose:
-        logging.basicConfig(level=logging.DEBUG, format='%(asctime)s: %(levelname)s - %(message)s')
+        logging.basicConfig(level=logging.DEBUG,
+                            format='%(asctime)s: %(levelname)s - %(message)s')
     else:
-        logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s - %(message)s')
+        logging.basicConfig(level=logging.INFO,
+                            format='%(asctime)s: %(levelname)s - %(message)s')
 
     client = docker.from_env()
 

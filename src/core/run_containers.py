@@ -9,13 +9,15 @@ def _setup_environment_vars(configuration, tool):
         if configuration.get('tools-config').get('semgrep') is not None and configuration.get('tools-config').get('semgrep').get('api-key') is not None:
             return ["SEMGREP_APP_TOKEN={}".format(configuration.get('tools-config').get('semgrep').get('api-key'))]
         else:
-            logging.warning('Semgrep api-key is not setted properly. Please, review the documentation of the fafnir configuration.')
+            logging.warning(
+                'Semgrep api-key is not setted properly. Please, review the documentation of the fafnir configuration.')
             return []
     elif tool == "checkov":
         if configuration.get('tools-config').get('checkov') is not None and configuration.get('tools-config').get('checkov').get('api-key') is not None:
             return ["BC_API_KEY={}".format(configuration.get('tools-config').get('checkov').get('api-key'))]
         else:
-            logging.warning('Checkov api-key is not setted properly. The tool will evaluate the vulnerabilities, but the data will not be completed.')
+            logging.warning(
+                'Checkov api-key is not setted properly. The tool will evaluate the vulnerabilities, but the data will not be completed.')
             return []
     else:
         return []
@@ -77,7 +79,8 @@ def run_tools(client, config, scan_fullpath, verbose, configuration, async_optio
 
     # Run Continer tools
     if configuration is None or configuration.get("containers") is None or configuration.get("containers").get("image") is None or configuration.get("containers").get("image") == "":
-        logging.warning("Container security not enabled. Please, set up the image name in Fafnir configuration to evaluate it")
+        logging.warning(
+            "Container security not enabled. Please, set up the image name in Fafnir configuration to evaluate it")
     else:
         logging.info("Running the Container security analysis")
         for tool in config.get("containers").get("container-security"):

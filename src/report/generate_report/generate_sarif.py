@@ -27,16 +27,16 @@ def generate_report_sarif(scan_fullpath: str, report: dict) -> dict:
                         },
                         "locations": [
                             {
-                            "physicalLocation": {
-                                "artifactLocation": {
-                                "uri": vuln.get("file"),
-                                "index": 0
-                                },
-                                "region": {
-                                "startLine": vuln.get("location"),
-                                "startColumn": 1
+                                "physicalLocation": {
+                                    "artifactLocation": {
+                                        "uri": vuln.get("file"),
+                                        "index": 0
+                                    },
+                                    "region": {
+                                        "startLine": vuln.get("location"),
+                                        "startColumn": 1
+                                    }
                                 }
-                            }
                             }
                         ],
                         "ruleId": vuln.get("rule"),
@@ -62,7 +62,6 @@ def generate_report_sarif(scan_fullpath: str, report: dict) -> dict:
                 ],
                 "results": value
             })
-
 
     sarif_report["runs"] = runs
 
