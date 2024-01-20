@@ -77,7 +77,7 @@ def process_vulns(output_path: str, disable_apis: bool) -> List:
                     idx = list(c.scores()).index(max(list(c.scores())))
                     item.set_severity(list(c.severities())[idx].upper())
                 epss_response = requests.get(
-                    f"https://api.first.org/data/v1/epss?cve={item.get_identifier()}")
+                    f"https://api.first.org/data/v1/epss?cve={item.get_identifier()}", timeout=30)
                 if epss_response.status_code == 200:
                     epss_object = epss_response.json()
                     if epss_object.get('data'):
