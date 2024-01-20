@@ -1,3 +1,3 @@
-  skip-dirs:
-    - .github/
-    - tests/
+skip-dirs:
+  - .github/
+  - tests/
