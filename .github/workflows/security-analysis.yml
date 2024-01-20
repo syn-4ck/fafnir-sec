@@ -1,0 +1,94 @@
+name: Security Code Analysis - SAST & SCA
+
+on: [push, pull_request]
+
+permissions:
+    contents: read # for actions/checkout to fetch code
+    security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+    actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+
+jobs:
+  trivy_scan:
+    name: Trivy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run Trivy vulnerability scanner in fs mode
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        exit-code: '1'
+        trivy-config: 'trivy.yaml'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+    
+    # Upload SARIF file generated in previous step
+    - name: Upload SARIF file
+      uses: actions/upload-artifact@v4.0.0
+      if: always()
+      with:
+        # Artifact name
+        name: trivy-results
+        # A file, directory or wildcard pattern that describes what to upload
+        path: trivy-results.sarif
+    
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v1
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+    
+  bandit_scan:
+    name: Bandit
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install Bandit
+      run: pip install bandit bandit_sarif_formatter -y
+
+    - name: Run Bandit
+      run: bandit --format sarif --output bandit-results.sarif -r src/
+    
+    # Upload SARIF file generated in previous step
+    - name: Upload SARIF file
+      uses: actions/upload-artifact@v4.0.0
+      if: always()
+      with:
+        # Artifact name
+        name: bandit-results
+        # A file, directory or wildcard pattern that describes what to upload
+        path: bandit-results.sarif
+    
+    - name: Upload Bandit scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v1
+      if: always()
+      with:
+        sarif_file: 'bandit-results.sarif'
+    
+  codeQL_scan:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+        uses: actions/checkout@v2
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: python
+        queries: security-extended
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:python"

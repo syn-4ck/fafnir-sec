@@ -1,0 +1,23 @@
+name: Code lint
+
+on: [push, pull_request]
+
+jobs:
+  flake8:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: pip install flake8 -y
+
+      - name: Run Flake8
+        working-directory: src
+        run: flake8 . --ignore E501,W503

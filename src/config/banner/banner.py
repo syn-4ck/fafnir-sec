@@ -1,3 +1,5 @@
+# flake8: noqa
+
 def print_banner(version):
     print(f'''                           
  _____ _    _____ _   _ ___ ____  

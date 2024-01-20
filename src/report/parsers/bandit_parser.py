@@ -1,9 +1,11 @@
 from typing import List, Dict
+import logging
 
-from report.data_schema.vulnerability import Vulnerability
+from ..data_schema.vulnerability import Vulnerability
 
 CATEGORY = "Static Application Security Testing (SAST)"
 TOOL_NAME = "Bandit"
+
 
 def parse_bandit_vulns(report: Dict[str, List[Dict[str, str]]]) -> List[Vulnerability]:
     """
@@ -16,11 +18,12 @@ def parse_bandit_vulns(report: Dict[str, List[Dict[str, str]]]) -> List[Vulnerab
         List[Vulnerability]: A list of Vulnerability objects representing the parsed vulnerabilities.
     """
     vulnerabilities: List[Vulnerability] = []
-    for result in report.get('results',[]):
+    for result in report.get('results', []):
         try:
             vulnerability = Vulnerability()
             vulnerability.set_name(result.get('issue_text'))
-            vulnerability.set_description(result.get('issue_text') + ": " + result.get('filename'))
+            vulnerability.set_description(result.get(
+                'issue_text') + ": " + result.get('filename'))
             vulnerability.set_severity(result.get('issue_severity'))
             vulnerability.set_identifier('')
             vulnerability.set_cvss(None)
@@ -34,6 +37,6 @@ def parse_bandit_vulns(report: Dict[str, List[Dict[str, str]]]) -> List[Vulnerab
             vulnerability.set_tools([TOOL_NAME])
             vulnerabilities.append(vulnerability)
         except Exception as e:
-            print(f"Error parsing vulnerability: {e}")
+            logging.error(f"Error parsing vulnerability: {e}")
 
     return vulnerabilities

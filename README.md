@@ -71,6 +71,8 @@ To check the options available in the CLI, you can run the following command:
 
 * **--asynchronous**: Asynchronous mode to run all security tools at the same time
 
+* **--output-type**: Type of report: sarif, json
+
 * **--output-path**: Path to store the reports
 
 * **--disable-apis**: Disable API requests to get external information
