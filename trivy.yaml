@@ -1,3 +1,4 @@
-skip-dirs:
-  - .github/
-  - tests/
+scan:
+  skip-dirs:
+    - .github/
+    - tests/
