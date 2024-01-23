@@ -23,7 +23,7 @@
 
 ## What is Fafnir?
 
-**Fafnir** is an open-source tool that allows for the complete automation of launching different security tools detecting vulnerabilities in the application's code. 
+**Fafnir** is an open-source tool that allows for the complete automation of launching different security tools detecting vulnerabilities in the software supply chain.
 
 This tool reports vulnerabilities in the different parts of the supply chain management, like source code, dependencies, containers, infrastructure as code...
 

@@ -165,3 +165,4 @@ Pipfile
 Pipfile.lock
 
 test/data/files/
+reports/
