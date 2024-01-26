@@ -29,7 +29,7 @@ This tool reports vulnerabilities in the different parts of the supply chain man
 
 > Fafnir was a dwarf-like creature in Norse mythology, who transformed himself into a terrifying dragon to protect his treasure. [More about his history](https://vikingr.org/other-beings/fafnir)
 
-* Official documentation: TO DO
+* Official documentation: [https://syn-4ck.github.io/fafnir-sec/](https://syn-4ck.github.io/fafnir-sec/)
 
 ## Architecture
 
