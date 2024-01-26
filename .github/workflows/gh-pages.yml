@@ -37,8 +37,10 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Sphinx
-        run: pip install -U sphinx
+      - name: Install Sphinx and requirements
+        run: |
+          pip install -U sphinx
+          pip install -r docs/requirements.txt
 
       - name: Build
         run: sphinx-build -M html docs/source/ docs/build/
