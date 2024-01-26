@@ -1,4 +1,4 @@
-# Fafnir
+# fafnir-sec
 
 <div align="center">
 <img src="./assets/logo/logo_fafnir.png" alt="Logo Fafnir" width="250"/>
@@ -21,9 +21,9 @@
 
 </div>
 
-## What is Fafnir?
+## What is fafnir-sec?
 
-**Fafnir** is an open-source tool that allows for the complete automation of launching different security tools detecting vulnerabilities in the software supply chain.
+**fafnir-sec** is an open-source tool that allows for the complete automation of launching different security tools detecting vulnerabilities in the software supply chain.
 
 This tool reports vulnerabilities in the different parts of the supply chain management, like source code, dependencies, containers, infrastructure as code...
 
@@ -39,9 +39,9 @@ The tool runs the security tools using Docker containers (official images or sel
 <img src="./assets/architecture.png" alt="Logo Fafnir" width="800"/>
 </div>
 
-Fafnir gets the tools from Docker Hub and, using the builded source code and/or the application container, detects the vulnerabilities, reporting it in a single, simple and standard JSON file with all the details of all the vulnerabilities detected.
+fafnir-sec gets the tools from Docker Hub and, using the builded source code and/or the application container, detects the vulnerabilities, reporting it in a single, simple and standard JSON file with all the details of all the vulnerabilities detected.
 
-Also, Fafnir detects all the technologies used in your project and only executes the security tools that have support. In this way, the tool only use the necessary tools and it improves the performance and the speed of the execution.
+Also, fafnir-sec detects all the technologies used in your project and only executes the security tools that have support. In this way, the tool only use the necessary tools and it improves the performance and the speed of the execution.
 
 ## Installation
 
@@ -87,7 +87,7 @@ To check the options available in the CLI, you can run the following command:
 
 ## Configuration
 
-The Fafnir configuration file, defined with the `--configuration` flag, may be defined with a YAML structure. You can see a full example of this file in [this repository](configuration_file/fafnir_config.yml). You can download it, fill it and then use it in your future scans.
+The fafnir-sec configuration file, defined with the `--configuration` flag, may be defined with a YAML structure. You can see a full example of this file in [this repository](configuration_file/fafnir_config.yml). You can download it, fill it and then use it in your future scans.
 
 ## Security tools
 
