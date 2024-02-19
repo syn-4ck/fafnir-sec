@@ -124,6 +124,7 @@ To know the supported languages and technologies, review the integrated tools.
 |MobSF|SAST & DAST|TO DO|
 |dustilock|Dependency Confusion|TO DO|
 |Nuclei|DAST|TO DO|
+|Dastardly|DAST|TO DO|
 |Kicks|IaC|TO DO|
 |kubescan|Kubernetes|TO DO|
 |grype|Container Analysis|TO DO|
