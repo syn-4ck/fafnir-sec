@@ -114,19 +114,19 @@ To know the supported languages and technologies, review the integrated tools.
 
 |Tool|Tipology|Status|
 |----|--------|------|
-|DevSkim|SAST|TO DO|
+|DevSkim|SAST|Soon|
+|Insider|SAST|Soon|
+|bearer|SAST|Soon|
+|MobSF|SAST & DAST|Soon|
+|Dastardly|DAST|Soon|
+|Kicks|IaC|Soon|
+|kubescan|Kubernetes|Soon|
 |Brakeman|SAST|TO DO|
 |LunaSec|SAST|TO DO|
 |GoSec|SAST|TO DO|
-|Insider|SAST|TO DO|
-|bearer|SAST|TO DO|
 |Progpilot|SAST|TO DO|
-|MobSF|SAST & DAST|TO DO|
 |dustilock|Dependency Confusion|TO DO|
 |Nuclei|DAST|TO DO|
-|Dastardly|DAST|TO DO|
-|Kicks|IaC|TO DO|
-|kubescan|Kubernetes|TO DO|
 |grype|Container Analysis|TO DO|
 |clair|Container Analysis|TO DO|
 |chain-bench|Software Supply Chain Security|TO DO|
