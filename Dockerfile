@@ -1,6 +1,6 @@
 FROM  python:3-alpine3.19
 
-ARG VERSION=1.0.0
+ARG VERSION=0.1.0
 
 RUN apk update && apk upgrade
 
