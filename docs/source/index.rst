@@ -2,11 +2,12 @@
 Welcome to fafnir's documentation!
 ==================================
 
-**Fafnir** is an open-source tool that allows for the complete automation of launching different security tools detecting vulnerabilities in the software supply chain.
+**fafnir-sec** is an open-source tool that allows for the complete automation of launching different security tools detecting vulnerabilities in the software supply chain.
 
 This tool reports vulnerabilities in the different parts of the supply chain management, like source code, dependencies, containers, infrastructure as code...
 
-Fafnir was a dwarf-like creature in Norse mythology, who transformed himself into a terrifying dragon to protect his treasure. `More about his history here`_.
+.. note::
+   Fafnir was a dwarf-like creature in Norse mythology, who transformed himself into a terrifying dragon to protect his treasure. `More about his history here`_.
 
 .. toctree::
    :maxdepth: 2
@@ -15,5 +16,6 @@ Fafnir was a dwarf-like creature in Norse mythology, who transformed himself int
    whatis
    usage
    run
+   configuration
 
 .. _more about his history here: https://vikingr.org/other-beings/fafnir

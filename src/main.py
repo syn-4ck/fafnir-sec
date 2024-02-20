@@ -11,7 +11,7 @@ from .core.technology_detection.detect_technologies import select_tools
 
 from .report.report import generate_report
 
-VERSION = '1.0.0'
+VERSION = '0.1.0'
 
 
 @click.command()

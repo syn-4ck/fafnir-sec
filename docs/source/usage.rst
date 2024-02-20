@@ -6,7 +6,7 @@ Getting started
 Installation
 ------------
 
-**fafnir** can be executed in Linux, MacOS and Windows OS. To use ``fafnir``, you can install it using two ways: docker or python.
+**fafnir-sec** can be executed in Linux, MacOS and Windows OS. To use ``fafnir``, you can install it using two ways: docker or python.
 
 Docker:
 ^^^^^^^
@@ -18,7 +18,7 @@ Docker:
 
 .. code-block:: console
 
-   docker pull ghsyn4ck/fafnir:latest
+   docker pull ghsyn4ck/fafnir-sec:latest
 
 
 Python:
@@ -28,7 +28,7 @@ Python:
 
 * Python 3.6 or later installed
 * Pip installed
-* Internet access in the machine to install ``fafnir`` module and the dependencies from Pypi.
+* Internet access in the machine to install ``fafnir-sec`` module and the dependencies from Pypi.
 
 .. code-block:: console
 
@@ -51,7 +51,7 @@ Run the container previously pulled with the command to execute:
 
 .. code-block:: console
 
-   docker run ghsyn4ck/fafnir:latest fafnir --help
+   docker run ghsyn4ck/fafnir-sec:latest fafnir --help
 
 
 Python:
