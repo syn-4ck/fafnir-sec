@@ -1,3 +1,4 @@
+
 def generate_report_sarif(scan_fullpath: str, report: dict) -> dict:
     """
     Generates a SARIF report from the given report.
