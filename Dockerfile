@@ -12,7 +12,7 @@ RUN pip install --upgrade pip
 
 RUN pip install wheel
 RUN python setup.py bdist_wheel
-RUN pip install dist/fafnir-${VERSION}-py3-none-any.whl
+RUN pip install dist/fafnir-$VERSION-py3-none-any.whl
 
 RUN adduser -D fafnir
 USER fafnir
