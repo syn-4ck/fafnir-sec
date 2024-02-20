@@ -99,38 +99,37 @@ To know the supported languages and technologies, review the integrated tools.
 
 |Tool|Tipology|API key|
 |----|--------|------|
-|Semgrep|SAST|Recommended|
-|Bandit|SAST|No|
-|FindSecBugs|SAST|No|
-|Gitleaks|Secrets Scanning|No|
-|osv-scanner|SCA|No|
-|Trivy|SCA|No|
-|Trivy|Container Security Scan|No|
-|Checkov|IaC Scan|Recommended|
-|Syft|SBOM generator|No|
+|[Semgrep](https://semgrep.dev/)|SAST|Recommended|
+|[Bandit](https://bandit.readthedocs.io/en/latest/)|SAST|No|
+|[FindSecBugs](https://find-sec-bugs.github.io/)|SAST|No|
+|[Gitleaks](https://gitleaks.io/)|Secrets Scanning|No|
+|[osv-scanner](https://osv.dev/)|SCA|No|
+|[Trivy](https://trivy.dev/)|SCA|No|
+|[Trivy](https://trivy.dev/)|Container Security Scan|No|
+|[Checkov](https://www.checkov.io/)|IaC Scan|Recommended|
+|[Syft](https://github.com/anchore/syft)|SBOM generator|No|
 
 
 ### In roadmap
 
 |Tool|Tipology|Status|
 |----|--------|------|
-|DevSkim|SAST|Soon|
-|Insider|SAST|Soon|
-|bearer|SAST|Soon|
-|MobSF|SAST & DAST|Soon|
-|Dastardly|DAST|Soon|
-|Kicks|IaC|Soon|
-|kubescan|Kubernetes|Soon|
-|Brakeman|SAST|TO DO|
-|LunaSec|SAST|TO DO|
-|GoSec|SAST|TO DO|
-|Progpilot|SAST|TO DO|
-|dustilock|Dependency Confusion|TO DO|
-|Nuclei|DAST|TO DO|
-|grype|Container Analysis|TO DO|
-|clair|Container Analysis|TO DO|
-|chain-bench|Software Supply Chain Security|TO DO|
-|Trufflehog|Secrets Scanning|TO DO|
+|[DevSkim](https://github.com/microsoft/DevSkim/wiki)|SAST|Soon|
+|[Insider](https://github.com/insidersec/insider)|SAST|Soon|
+|[bearer](https://www.bearer.com/)|SAST|Soon|
+|[MobSF](https://mobsf.github.io/docs/#/)|SAST & DAST|Soon|
+|[Dastardly](https://portswigger.net/burp/dastardly)|DAST|Soon|
+|[Kics](https://kics.io/)|IaC|Soon|
+|[Brakeman](https://brakemanscanner.org/)|SAST|TO DO|
+|[LunaSec](https://www.lunasec.io/)|SAST|TO DO|
+|[GoSec](https://github.com/securego/gosec)|SAST|TO DO|
+|[Progpilot](https://github.com/designsecurity/progpilot)|SAST|TO DO|
+|[dustilock](https://github.com/Checkmarx/dustilock)|Dependency Confusion|TO DO|
+|[Nuclei](https://docs.projectdiscovery.io/tools/nuclei/overview)|DAST|TO DO|
+|[grype](https://github.com/anchore/grype)|Container Analysis|TO DO|
+|[clair](https://quay.github.io/clair/)|Container Analysis|TO DO|
+|[chain-bench](https://github.com/aquasecurity/chain-bench)|Software Supply Chain Security|TO DO|
+|[Trufflehog](https://github.com/trufflesecurity/trufflehog)|Secrets Scanning|TO DO|
 
 ## Supported languages and technologies
 
